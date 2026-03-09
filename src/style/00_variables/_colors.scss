@@ -2,11 +2,20 @@
 @use './tokens' as *;
 
 $background: $color-background;
+<<<<<<< HEAD
 $white: $color-white;
 $black: $color-text;
 $primary: $color-primary;
 $secondary: $color-secondary;
 $oxydred: $color-accent;
+=======
+$white:      $color-white;
+$black:      $color-text;
+$primary:    $color-primary;
+$secondary:  $color-secondary;
+$oxydred:    $color-accent;
+
+>>>>>>> 13b27ff3b545faa49af5547e56a57a52129d4fb4
 $colors: (
   "background": $color-background,
   "white":      $color-white,

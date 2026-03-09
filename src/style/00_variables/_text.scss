@@ -1,5 +1,6 @@
 @use './tokens' as *;
 @use './functions' as *;
+<<<<<<< HEAD
 @import '#{$font-url-1}';
 @import '#{$font-url-2}';
 
@@ -7,6 +8,17 @@ $font-queen: $font-secondary;
 $font-family: $font-primary;
 $font-weights: (100, 200, 300, 400, 500, 600, 700, 800, 900);
 $font-styles: (normal, italic);
+=======
+
+@import url('#{$font-url-1}');
+@import url('#{$font-url-2}');
+
+$font-queen:  $font-secondary;
+$font-family: $font-primary;
+
+$font-weights: (100, 200, 300, 400, 500, 600, 700, 800, 900);
+$font-styles:  (normal, italic);
+>>>>>>> 13b27ff3b545faa49af5547e56a57a52129d4fb4
 
 @each $weight in $font-weights {
   @each $style in $font-styles {

@@ -1,0 +1,22 @@
+// 01_atoms/title
+
+@use '../00_variables/variables' as *;
+
+h1, h2 {
+    font-family: $font-queen;
+    color: $black;
+    margin: 0;
+}
+
+h1 {
+    font-size: fs(64);
+}
+
+h2 {
+    font-size: fs(48);
+}
+
+h3 {
+    font-size: fs(20);
+    font-weight: 500;
+}

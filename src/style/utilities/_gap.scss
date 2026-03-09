@@ -1,0 +1,7 @@
+@use '../00_variables/variables' as *;
+
+@each $size in $spacing-scale {
+  .gap-#{$size}   { gap: if(sass($size == 0): 0; else: spacing($size)); }
+  .gap-x-#{$size} { column-gap: if(sass($size == 0): 0; else: spacing($size)); }
+  .gap-y-#{$size} { row-gap: if(sass($size == 0): 0; else: spacing($size)); }
+}

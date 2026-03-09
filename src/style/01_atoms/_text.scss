@@ -1,0 +1,26 @@
+// 01_atoms/_text.scss
+@use '../00_variables/variables' as *;
+
+p, a, ul, li, ol, div {
+  text-decoration: none;
+  text-transform: none;
+  word-break: break-word;
+
+  &.underline {
+    text-decoration: underline !important;
+  }
+}
+
+blockquote {
+  position: relative;
+
+  &:before {
+    width: 1px;
+    height: 100%;
+    background-color: $secondary;
+    content: "";
+    display: block;
+    left: -16px;
+    position: absolute;
+  }
+}

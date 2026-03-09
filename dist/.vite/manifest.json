@@ -1,0 +1,11 @@
+{
+  "src/scripts/main.js": {
+    "file": "main-D1IcCTw0.js",
+    "name": "main",
+    "src": "src/scripts/main.js",
+    "isEntry": true,
+    "css": [
+      "main-DEzO4fLO.css"
+    ]
+  }
+}

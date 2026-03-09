@@ -1,0 +1,26 @@
+// 01_atoms/_base.scss
+@use '../00_mixins/mixins' as *;
+@use '../00_variables/variables' as *;
+
+html, body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  background-color: $background;
+  overflow-x: hidden;
+  font-family: $font-family;
+  color: $black;
+}
+
+main {
+  flex: 1;
+}
+
+header {
+  position: relative;
+}
+
+footer {
+  padding: fluid(20);
+  text-align: center;
+}

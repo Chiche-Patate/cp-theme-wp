@@ -1,0 +1,8 @@
+// 01_atoms/outline
+
+@use '../00_variables/variables' as *;
+
+*:focus {
+    outline: 3px solid $secondary !important;
+    outline-offset: 2px;
+}

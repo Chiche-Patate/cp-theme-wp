@@ -1,0 +1,18 @@
+@use "sass:math";
+@use './tokens' as *;
+
+@function fluid($size, $min-ratio: .85, $max-ratio: 1.15) {
+  $min: math.div($size * $min-ratio, $spacing-base);
+  $max: math.div($size * $max-ratio, $spacing-base);
+  $vw: math.div($size, $spacing-base) * 1.5;
+
+  @return clamp(#{$min}rem, #{$vw}vw, #{$max}rem);
+}
+
+@function fs($size, $min-ratio: .85, $max-ratio: 1.15) {
+  @return fluid($size, $min-ratio, $max-ratio);
+}
+
+@function spacing($size, $min-ratio: .85, $max-ratio: 1.15) {
+  @return fluid($size, $min-ratio, $max-ratio);
+}

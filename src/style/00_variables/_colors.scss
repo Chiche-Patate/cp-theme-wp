@@ -1,0 +1,23 @@
+@use "sass:map";
+@use './tokens' as *;
+
+$background: $color-background;
+$white: $color-white;
+$black: $color-text;
+$primary: $color-primary;
+$secondary: $color-secondary;
+$oxydred: $color-accent;
+$colors: (
+  "background": $color-background,
+  "white":      $color-white,
+  "black":      $color-text,
+  "primary":    $primary,
+  "secondary":  $secondary,
+  "accent":     $color-accent,
+);
+
+@each $name, $value in $colors {
+  .c-#{$name}  { &, * { color: $value !important; } }
+  .bg-#{$name} { background-color: $value !important; }
+  .bd-#{$name} { border-color: $value !important; }
+}

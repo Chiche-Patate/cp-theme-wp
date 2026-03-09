@@ -1,0 +1,41 @@
+@use "sass:map";
+@use "sass:list";
+@use '../00_variables/tokens' as *;
+
+$breakpoints: (
+  xs:  $bp-xs,
+  sm:  $bp-sm,
+  md:  $bp-md,
+  lg:  $bp-lg,
+  xl:  $bp-xl,
+  xxl: $bp-xxl,
+);
+
+@mixin breakpoint($key, $range: null) {
+  @if not map.has-key($breakpoints, $key) {
+    @error "⚠️ Breakpoint `#{$key}` non trouvé. Breakpoints possibles : #{map.keys($breakpoints)}.";
+  }
+
+  $keys: map.keys($breakpoints);
+  $index: list.index($keys, $key);
+  $value: map.get($breakpoints, $key);
+
+  @if $range == "only" {
+    $next-key: list.nth($keys, $index + 1);
+    $next-value: map.get($breakpoints, $next-key);
+
+    @if $next-value {
+      @media (min-width: #{$value}) and (max-width: #{calc($next-value - 0.02px)}) {
+        @content;
+      }
+    } @else {
+      @media (min-width: #{$value}) {
+        @content;
+      }
+    }
+  } @else {
+    @media (min-width: #{$value}) {
+      @content;
+    }
+  }
+}

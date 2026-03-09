@@ -1,0 +1,11 @@
+/* PART 1 - Before Lazy Load */
+img {
+    &[data-lazyloaded]{
+        opacity: 0;
+    }
+
+    &.litespeed-loaded{
+        transition: opacity .5s linear 0.2s;
+        opacity: 1;
+    }
+}

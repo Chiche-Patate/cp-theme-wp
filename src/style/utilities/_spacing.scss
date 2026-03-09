@@ -1,0 +1,22 @@
+@use '../00_variables/variables' as *;
+
+$spacing-directions: (
+    "t": "top",
+    "r": "right",
+    "b": "bottom",
+    "l": "left",
+);
+
+@each $size in $spacing-scale {
+    .m-#{$size}  { margin: if(sass($size == 0): 0; else: spacing($size)); }
+    .p-#{$size}  { padding: if(sass($size == 0): 0; else: spacing($size)); }
+    .mx-#{$size} { margin-inline: if(sass($size == 0): 0; else: spacing($size)); }
+    .px-#{$size} { padding-inline: if(sass($size == 0): 0; else: spacing($size)); }
+    .my-#{$size} { margin-block: if(sass($size == 0): 0; else: spacing($size)); }
+    .py-#{$size} { padding-block: if(sass($size == 0): 0; else: spacing($size)); }
+
+    @each $key, $direction in $spacing-directions {
+        .m#{$key}-#{$size} { margin-#{$direction}: if(sass($size == 0): 0; else: spacing($size)); }
+        .p#{$key}-#{$size} { padding-#{$direction}: if(sass($size == 0): 0; else: spacing($size)); }
+    }
+}

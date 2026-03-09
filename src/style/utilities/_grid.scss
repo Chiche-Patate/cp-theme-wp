@@ -1,0 +1,85 @@
+@use '../00_variables/variables' as *;
+@use '../00_mixins/mixins' as *;
+
+// =============================================================================
+// Display
+// =============================================================================
+.flex  { display: flex; }
+.grid  { display: grid; }
+
+// =============================================================================
+// Flex direction
+// =============================================================================
+.flex-row     { flex-direction: row; }
+.flex-col     { flex-direction: column; }
+.flex-row-rev { flex-direction: row-reverse; }
+.flex-col-rev { flex-direction: column-reverse; }
+
+// =============================================================================
+// Flex wrap
+// =============================================================================
+.flex-wrap   { flex-wrap: wrap; }
+.flex-nowrap { flex-wrap: nowrap; }
+
+// =============================================================================
+// Justify & Align
+// =============================================================================
+.justify-start    { justify-content: flex-start; }
+.justify-end      { justify-content: flex-end; }
+.justify-center   { justify-content: center; }
+.justify-between  { justify-content: space-between; }
+.justify-around   { justify-content: space-around; }
+.justify-evenly   { justify-content: space-evenly; }
+
+.items-start      { align-items: flex-start; }
+.items-end        { align-items: flex-end; }
+.items-center     { align-items: center; }
+.items-stretch    { align-items: stretch; }
+.items-baseline   { align-items: baseline; }
+
+.self-start       { align-self: flex-start; }
+.self-end         { align-self: flex-end; }
+.self-center      { align-self: center; }
+.self-stretch     { align-self: stretch; }
+
+// =============================================================================
+// Flex grow / shrink
+// =============================================================================
+.flex-1      { flex: 1; }
+.flex-auto   { flex: auto; }
+.flex-none   { flex: none; }
+.grow        { flex-grow: 1; }
+.shrink      { flex-shrink: 1; }
+.no-shrink   { flex-shrink: 0; }
+
+// =============================================================================
+// CSS Grid — colonnes
+// =============================================================================
+$grid-columns: 12;
+
+.grid-cols-auto { grid-template-columns: repeat(auto-fit, minmax(0, 1fr)); }
+
+@for $i from 1 through $grid-columns {
+  .grid-cols-#{$i} { grid-template-columns: repeat(#{$i}, minmax(0, 1fr)); }
+  .col-span-#{$i}  { grid-column: span #{$i}; }
+  .col-start-#{$i} { grid-column-start: #{$i}; }
+}
+
+.col-span-full { grid-column: 1 / -1; }
+
+// =============================================================================
+// Responsive — breakpoints
+// =============================================================================
+@each $bp, $value in $breakpoints {
+  @include breakpoint($bp) {
+    .flex-#{$bp}-row     { flex-direction: row; }
+    .flex-#{$bp}-col     { flex-direction: column; }
+    .flex-#{$bp}-wrap    { flex-wrap: wrap; }
+    .flex-#{$bp}-nowrap  { flex-wrap: nowrap; }
+
+    @for $i from 1 through $grid-columns {
+      .grid-cols-#{$bp}-#{$i} { grid-template-columns: repeat(#{$i}, minmax(0, 1fr)); }
+      .col-span-#{$bp}-#{$i}  { grid-column: span #{$i}; }
+    }
+  }
+}

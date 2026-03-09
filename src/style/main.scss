@@ -1,0 +1,21 @@
+// main.scss
+
+// Abstracts — pas de CSS généré, uniquement des outils
+@use "./00_variables/variables" as *;
+@use "./00_mixins/mixins" as *;
+
+// Base — reset et fondations
+@use "./01_atoms/reset";
+@use "./01_atoms/base";
+@use "./01_atoms/outline";
+
+// Atomes — éléments HTML bruts
+@use "./01_atoms/text";
+@use "./01_atoms/title";
+@use "./01_atoms/layout";
+
+// Utilitaires — classes générées
+@use "./utilities/gap";
+@use "./utilities/grid";
+@use "./utilities/spacing";
+@use "./utilities/typography";

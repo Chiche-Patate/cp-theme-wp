@@ -1,0 +1,27 @@
+@use '../00_variables/variables' as *;
+
+.section {
+    display: flex;
+    max-width: 100%;
+
+    &.center {
+        justify-content: center;
+    }
+
+    &__inner {
+        width: $layout-inner-width;
+        max-width: $layout-max-width;
+        position: relative;
+        margin: 0 auto;
+
+        img {
+        max-width: 100%;
+        }
+    }
+}
+
+.fixed {
+    position: fixed;
+    z-index: $layout-z-fixed;
+    width: 100%;
+}

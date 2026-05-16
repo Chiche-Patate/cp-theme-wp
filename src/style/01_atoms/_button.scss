@@ -1,0 +1,144 @@
+@use '../00_variables/variables' as *;
+
+// =============================================================================
+// Boutons — configuration
+// Surcharger ces valeurs dans _config.scss avant d'importer ce fichier
+// =============================================================================
+$btn-padding-y: spacing(16) !default;
+$btn-padding-x: spacing(32) !default;
+$btn-border-radius: radius(6)   !default;
+$btn-font-weight: 500         !default;
+$btn-transition: all .2s ease !default;
+
+// =============================================================================
+// Placeholders de base
+// =============================================================================
+%button-base {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: $btn-padding-y $btn-padding-x;
+    border-radius: $btn-border-radius;
+    font-weight: $btn-font-weight;
+    cursor: pointer;
+    transition: $btn-transition;
+    width: fit-content;
+    height: fit-content;
+}
+
+%btn-outline-hover {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    transition: color .3s ease;
+
+    &::before {
+        position: absolute;
+        content: '';
+        display: block;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: -100%;
+        transition: left .3s ease;
+        z-index: -1;
+    }
+
+    &:hover::before, &:focus::before {
+        left: 0;
+    }
+}
+
+%btn-filled-base {
+    border: none;
+}
+
+// =============================================================================
+// Outline
+// =============================================================================
+.btn-outline {
+    @extend %button-base;
+    @extend %btn-outline-hover;
+
+    background-color: transparent;
+    border: 1px solid currentcolor;
+
+    &.btn-primary {
+        color: $color-primary;
+        &::before          { background-color: $color-primary; }
+        &:hover, &:focus   { color: $color-white; }
+    }
+
+    &.btn-secondary {
+        color: $color-secondary;
+        &::before          { background-color: $color-secondary; }
+        &:hover, &:focus   { color: $color-white; }
+    }
+
+    &.btn-white {
+        color: $color-white;
+        &::before          { background-color: $color-white; }
+        &:hover, &:focus   { color: $color-text; }
+    }
+
+    &.btn-black {
+        color: $color-text;
+        &::before          { background-color: $color-text; }
+        &:hover, &:focus   { color: $color-white; }
+    }
+}
+
+// =============================================================================
+// Filled
+// =============================================================================
+.btn-filled {
+    @extend %button-base;
+    @extend %btn-filled-base;
+
+    &.btn-primary {
+        background-color: $color-primary;
+        color: $color-white;
+    }
+
+    &.btn-secondary {
+        background-color: $color-secondary;
+        color: $color-white;
+    }
+
+    &.btn-white {
+        background-color: $color-white;
+        color: $color-text;
+    }
+
+    &.btn-black {
+        background-color: $color-text;
+        color: $color-white;
+    }
+}
+
+// =============================================================================
+// Bouton HTML natif
+// =============================================================================
+button {
+    @extend %button-base;
+    @extend %btn-filled-base;
+}
+
+// =============================================================================
+// WooCommerce blocks
+// =============================================================================
+.wc-block-components-button {
+    @extend %button-base;
+    @extend %btn-outline-hover;
+
+    background-color: transparent;
+    border: 1px solid currentcolor;
+    color: $color-text;
+
+    &::before { background-color: $color-text; }
+
+    &:hover, &:focus {
+        border-color: $color-text;
+        color: $color-white;
+    }
+}

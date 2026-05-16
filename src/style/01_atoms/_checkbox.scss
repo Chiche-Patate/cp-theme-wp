@@ -1,0 +1,95 @@
+@use '../00_variables/variables' as *;
+@use '../00_mixins/mixins' as *;
+
+// =============================================================================
+// Checkbox & Radio — configuration
+// Surcharger dans _config.scss si besoin
+// =============================================================================
+$input-choice-size: 24px      !default;
+$input-choice-margin: 6px       !default;
+$input-choice-radius: radius(6) !default; // checkbox seulement
+$input-choice-dot-size: 10px      !default;
+$input-choice-dot-offset: 6px       !default;   // top/left du ::after
+$input-choice-transition: all 0.1s  !default;
+
+// =============================================================================
+// WooCommerce blocks — reset
+// =============================================================================
+.wc-block-components-radio-control .wc-block-components-radio-control__input:checked::before,
+.wc-block-components-checkbox__mark {
+    appearance: none !important;
+    display: none !important;
+}
+
+// =============================================================================
+// Base commune checkbox + radio
+// =============================================================================
+%input-choice-base {
+    box-sizing: border-box;
+    width: $input-choice-size;
+    height: $input-choice-size;
+    margin: $input-choice-margin;
+    appearance: none;
+    border: 1px solid $color-primary;
+    background-color: rgba($color-primary, .1);
+    outline: none;
+    transition: $input-choice-transition;
+    cursor: pointer;
+    position: relative;
+
+    &::after {
+        content: "";
+        background-color: $color-primary;
+        display: none;
+        width: $input-choice-dot-size;
+        height: $input-choice-dot-size;
+        position: absolute;
+        top: $input-choice-dot-offset;
+        left: $input-choice-dot-offset;
+    }
+
+    &:not(:disabled) {
+        &:checked::after       { display: block; }
+        &:hover, &:focus-visible { outline: 2px solid $color-secondary; }
+    }
+}
+
+// =============================================================================
+// Checkbox
+// =============================================================================
+input[type="checkbox"] {
+    @extend %input-choice-base;
+
+    border-radius: $input-choice-radius;
+    padding: 2px;
+
+    &::after { border-radius: radius(3); }
+}
+
+// =============================================================================
+// Radio
+// =============================================================================
+input[type="radio"] {
+    @extend %input-choice-base;
+
+    border-radius: 50%;
+
+    &::after { border-radius: 50%; }
+}
+
+// =============================================================================
+// Labels
+// =============================================================================
+label:has(input[type="radio"]),
+label:has(input[type="checkbox"]) {
+    display: flex;
+    align-items: center;
+}
+
+// =============================================================================
+// WooCommerce checkout — ajustements offset
+// =============================================================================
+.woocommerce-checkout {
+    input[type="radio"]::after    { top: 4px; left: 4px; }
+    input[type="checkbox"]::after { top: 5px; left: 5px; }
+}

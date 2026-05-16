@@ -3,11 +3,12 @@
 .section {
     display: flex;
     max-width: 100%;
-
+    padding-block: spacing(32);
+    
     &.center {
         justify-content: center;
     }
-
+    
     &__inner {
         width: $layout-inner-width;
         max-width: $layout-max-width;
@@ -15,8 +16,14 @@
         margin: 0 auto;
 
         img {
-        max-width: 100%;
+            max-width: 100%;
         }
+    }
+
+    &.no-mg {
+        margin: 0;
+        margin-block: 0;
+        margin-inline: 0;
     }
 }
 

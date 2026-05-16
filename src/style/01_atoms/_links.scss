@@ -1,0 +1,93 @@
+@use '../00_variables/variables' as *;
+
+// =============================================================================
+// Links — configuration
+// Surcharger dans _config.scss si besoin
+// =============================================================================
+$link-font-weight: 500           !default;
+$link-text-transform: uppercase     !default;
+$link-img-scale-hover: 1.05          !default;
+$link-img-transition: transform .3s ease !default;
+$underline-color: $color-secondary !default;
+$underline-height: 1px           !default;
+$underline-offset: -4px          !default; // bottom
+$underline-transition: width .3s ease !default;
+
+// =============================================================================
+// Placeholders
+// =============================================================================
+%link-base {
+    font-weight: $link-font-weight;
+    text-transform: $link-text-transform;
+    cursor: pointer;
+    width: fit-content;
+
+    img {
+        transform: scale(1);
+        transition: $link-img-transition;
+    }
+
+    &:hover, &:focus {
+        img { transform: scale($link-img-scale-hover); }
+    }
+}
+
+%underline-bar {
+    content: '';
+    display: block;
+    position: absolute;
+    background-color: $underline-color;
+    height: $underline-height;
+    transition: $underline-transition;
+    bottom: $underline-offset;
+}
+
+%underline-hover-style {
+    position: relative;
+
+    &::after {
+        @extend %underline-bar;
+
+        width: 0;
+        left: 0;
+    }
+
+    &:hover, &:focus-within {
+        &::after { width: 100%; }
+    }
+}
+
+// =============================================================================
+// Sélecteurs
+// =============================================================================
+a,
+.link,
+.menu-item > a,
+.nav-links a {
+    @extend %link-base;
+}
+
+.link-underline {
+    position: relative;
+
+    &::after {
+        @extend %underline-bar;
+
+        width: 100%;
+        right: 0;
+    }
+
+    &:hover, &:focus-within {
+        &::after { width: 0; }
+    }
+}
+
+.underline-hover {
+    @extend %underline-hover-style;
+}
+
+.nav-links, .footer-menu {
+    > ul li a {
+        @extend %underline-hover-style;
+    }
+}

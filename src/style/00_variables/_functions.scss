@@ -16,3 +16,11 @@
 @function spacing($size, $min-ratio: .85, $max-ratio: 1.15) {
   @return fluid($size, $min-ratio, $max-ratio);
 }
+
+@function radius($size) {
+    @if $size == 0 or $size == 9999 {
+        @return #{$size}px;
+    }
+
+    @return fluid($size);
+}

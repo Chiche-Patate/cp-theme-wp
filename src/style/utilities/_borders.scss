@@ -1,0 +1,121 @@
+@use '../00_variables/variables' as *;
+@use '../00_mixins/mixins' as *;
+
+$border-colors: (
+    "primary":    $color-primary,
+    "secondary":  $color-secondary,
+    "accent":     $color-accent,
+    "text":       $color-text,
+    "white":      $color-white,
+    "background": $color-background,
+);
+
+@each $name, $value in $border-colors {
+    .border-#{$name} { border-color: $value; }
+    .border-t-#{$name} { border-top-color: $value; }
+    .border-r-#{$name} { border-right-color: $value; }
+    .border-b-#{$name} { border-bottom-color: $value; }
+    .border-l-#{$name} { border-left-color: $value; }
+}
+
+// =============================================================================
+// Border width
+// =============================================================================
+$border-widths: (0, 1, 2, 4, 8);
+
+// 1. Classes base
+@each $size in $border-widths {
+    .border-#{$size} { border-width: #{$size}px; border-style: solid; }
+
+    .border-t-#{$size} { border-top-width: #{$size}px; border-top-style: solid; }
+    .border-r-#{$size} { border-right-width: #{$size}px; border-right-style: solid; }
+    .border-b-#{$size} { border-bottom-width: #{$size}px; border-bottom-style: solid; }
+    .border-l-#{$size} { border-left-width: #{$size}px; border-left-style: solid; }
+}
+
+// 2. Classes breakpoint
+@each $bp, $value in $breakpoints {
+    @include breakpoint($bp) {
+        @each $size in $border-widths {
+            .border-#{$size}-#{$bp} { border-width: #{$size}px; border-style: solid; }
+
+            .border-t-#{$size}-#{$bp} { border-top-width: #{$size}px; border-top-style: solid; }
+            .border-r-#{$size}-#{$bp} { border-right-width: #{$size}px; border-right-style: solid; }
+            .border-b-#{$size}-#{$bp} { border-bottom-width: #{$size}px; border-bottom-style: solid; }
+            .border-l-#{$size}-#{$bp} { border-left-width: #{$size}px; border-left-style: solid; }
+        }
+    }
+}
+
+// =============================================================================
+// Border radius
+// =============================================================================
+@each $size in $radius-scale {
+    .rounded-#{$size} { border-radius: radius($size); }
+
+    .rounded-t-#{$size} {
+        border-top-left-radius: radius($size);
+        border-top-right-radius: radius($size);
+    }
+    .rounded-b-#{$size} {
+        border-bottom-left-radius: radius($size);
+        border-bottom-right-radius: radius($size);
+    }
+    .rounded-l-#{$size} {
+        border-top-left-radius: radius($size);
+        border-bottom-left-radius: radius($size);
+    }
+    .rounded-r-#{$size} {
+        border-top-right-radius: radius($size);
+        border-bottom-right-radius: radius($size);
+    }
+
+    @each $bp, $value in $breakpoints {
+        @include breakpoint($bp) {
+            .rounded-#{$size}-#{$bp} { border-radius: radius($size); }
+
+            .rounded-t-#{$size}-#{$bp} {
+                border-top-left-radius: radius($size);
+                border-top-right-radius: radius($size);
+            }
+            .rounded-b-#{$size}-#{$bp} {
+                border-bottom-left-radius: radius($size);
+                border-bottom-right-radius: radius($size);
+            }
+            .rounded-l-#{$size}-#{$bp} {
+                border-top-left-radius: radius($size);
+                border-bottom-left-radius: radius($size);
+            }
+            .rounded-r-#{$size}-#{$bp} {
+                border-top-right-radius: radius($size);
+                border-bottom-right-radius: radius($size);
+            }
+        }
+    }
+}
+
+// Full reste en dehors de la boucle
+.rounded-full { border-radius: 9999px; }
+
+@each $bp, $value in $breakpoints {
+    @include breakpoint($bp) {
+        .rounded-full-#{$bp} { border-radius: 9999px; }
+    }
+}
+
+// =============================================================================
+// Border style
+// =============================================================================
+.border-solid  { border-style: solid; }
+.border-dashed { border-style: dashed; }
+.border-dotted { border-style: dotted; }
+.border-none   { border-style: none; }
+
+@each $bp, $value in $breakpoints {
+    @include breakpoint($bp) {
+        .border-solid-#{$bp}  { border-style: solid; }
+        .border-dashed-#{$bp} { border-style: dashed; }
+        .border-dotted-#{$bp} { border-style: dotted; }
+        .border-none-#{$bp}   { border-style: none; }
+    }
+}

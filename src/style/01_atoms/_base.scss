@@ -8,7 +8,7 @@ html, body {
   min-height: 100dvh;
   background-color: $background;
   overflow-x: hidden;
-  font-family: $font-family;
+  font-family: $font-primary;
   color: $black;
 }
 
@@ -18,9 +18,9 @@ main {
 
 header {
   position: relative;
+  padding-top: var(--header-height);
 }
 
 footer {
   padding: fluid(20);
-  text-align: center;
 }

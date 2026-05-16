@@ -1,0 +1,107 @@
+// =============================================================================
+// CP Theme — Config projet
+// Copier ce fichier en _config.scss et remplir les valeurs
+// _config.scss est ignoré par git (.gitignore)
+// Ce fichier doit être importé AVANT _tokens.scss dans main.scss
+// =============================================================================
+
+
+// =============================================================================
+// Couleurs
+// =============================================================================
+
+/// Couleur principale de la marque (boutons, liens, accents)
+/// @type Color
+$color-primary:  ;
+
+/// Variante foncée de la couleur principale
+/// @type Color
+$color-secondary:  ;
+
+/// Couleur d'accentuation (badges, statuts, highlights)
+/// @type Color
+$color-accent:  ;
+
+/// Couleur de fond global du site
+/// @type Color
+$color-background:  ;
+
+/// Couleur du texte principal
+/// @type Color
+$color-text:  ;
+
+
+// =============================================================================
+// Typographies
+// =============================================================================
+
+/// Police principale — UI, corps de texte, labels
+/// @type String
+/// @example $font-primary: "Raleway", sans-serif;
+$font-primary:  ;
+
+/// Police secondaire — titres, accents typographiques
+/// @type String
+/// @example $font-secondary: "Playfair Display", serif;
+$font-secondary:  ;
+
+
+// =============================================================================
+// Boutons (optionnel)
+// =============================================================================
+
+/// Padding vertical des boutons
+/// @type Number
+// $btn-padding-y: spacing(16);
+
+/// Padding horizontal des boutons
+/// @type Number
+// $btn-padding-x: spacing(32);
+
+/// Border radius des boutons
+/// @type Number
+// $btn-border-radius: radius(4);
+
+
+// =============================================================================
+// Inputs (optionnel)
+// =============================================================================
+
+/// Couleur de la ligne de focus sous les inputs
+/// @type Color
+// $input-focus-color: $color-primary;
+
+/// Opacité du label flottant au repos
+/// @type Number
+// $label-opacity: .4;
+
+
+// =============================================================================
+// Links (optionnel)
+// =============================================================================
+
+/// Couleur du soulignement des liens
+/// @type Color
+// $underline-color: $color-secondary;
+
+/// Text-transform des liens
+/// @type String
+// $link-text-transform: uppercase;
+
+
+// =============================================================================
+// Separators (optionnel)
+// =============================================================================
+
+/// Couleur du séparateur horizontal
+/// @type Color
+// $separator-color: $color-secondary;
+
+
+// =============================================================================
+// Spinner (optionnel)
+// =============================================================================
+
+/// Taille du spinner de chargement
+/// @type Number
+// $spinner-size: 42px;

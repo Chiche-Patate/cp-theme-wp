@@ -3,9 +3,10 @@
 @use '../00_variables/variables' as *;
 
 h1, h2 {
-    font-family: $font-queen;
+    font-family: $font-secondary;
     color: $black;
     margin: 0;
+    font-weight: 400;
 }
 
 h1 {

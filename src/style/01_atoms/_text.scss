@@ -5,6 +5,7 @@ p, a, ul, li, ol, div {
   text-decoration: none;
   text-transform: none;
   overflow-wrap: break-word;
+  line-height: 1.1;
 
   &.underline {
     text-decoration: underline !important;

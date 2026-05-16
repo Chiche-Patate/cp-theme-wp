@@ -1,4 +1,10 @@
 <?php
+
+wp_localize_script('theme-js', 'theme', [
+    'ajax_url' => admin_url('admin-ajax.php'),
+    'nonce'    => wp_create_nonce('theme_nonce'),
+]);
+
 /**
  * Chargement des assets via le manifest Vite
  */
@@ -34,10 +40,6 @@ add_action('wp_enqueue_scripts', function () {
     );
 });
 
-wp_localize_script('theme-js', 'theme', [
-    'ajax_url' => admin_url('admin-ajax.php'),
-    'nonce'    => wp_create_nonce('theme_nonce'),
-]);
 
 /**
  * Support du thème
@@ -59,3 +61,18 @@ add_filter('excerpt_length', function () {
 add_filter('excerpt_more', function () {
     return '...';
 });
+
+add_filter('upload_mimes', function($mimes) {
+    $mimes['svg'] = 'image/svg+xml';
+    return $mimes;
+});
+
+add_filter('wp_check_filetype_and_ext', function($data, $file, $filename, $mimes) {
+    if (str_ends_with($filename, '.svg')) {
+        $data['ext']  = 'svg';
+        $data['type'] = 'image/svg+xml';
+    }
+    return $data;
+}, 10, 4);
+
+// include 'functions/option_admin.php'; <-- Décommenter si utilisé

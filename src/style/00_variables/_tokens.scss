@@ -1,49 +1,44 @@
-<<<<<<< HEAD
-$color-primary: #046F78;
-$color-secondary: #014D56;
-$color-accent: #8B3A2A;
-$color-background: #f2f2f2;
-$color-text: #1A1714;
-$color-white: #FFF;
-$font-primary: "Raleway", sans-serif;
-$font-secondary: "Queen Serif", serif;
-$font-url-1: 'https://fonts.cdnfonts.com/css/queen-serif';
-$font-url-2: 'https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap';
+// =============================================================================
+// Colors
+// Surcharge ces valeurs dans ton fichier de config projet avant d'importer tokens
+// =============================================================================
+$color-primary: #000 !default;
+$color-secondary: #333 !default;
+$color-accent: #666 !default;
+$color-background: #fff !default;
+$color-text: #1A1714 !default;
+$color-white: #fff !default;
+
+// =============================================================================
+// Typography
+// =============================================================================
+$font-primary: "Arial", sans-serif !default;
+$font-secondary: "Georgia", sans-serif !default;
+
+// =============================================================================
+// Spacing
+// =============================================================================
 $spacing-base: 16;
 $spacing-scale: (0, 2, 4, 8, 12, 16, 20, 24, 32, 40, 48, 64, 80, 96, 128);
+
+// =============================================================================
+// Breakpoints
+// =============================================================================
 $bp-xs: 380px;
 $bp-sm: 576px;
 $bp-md: 768px;
 $bp-lg: 992px;
 $bp-xl: 1024px;
 $bp-xxl: 1200px;
+
+// =============================================================================
+// Layout
+// =============================================================================
 $layout-max-width: 1440px;
 $layout-inner-width: 90%;
 $layout-z-fixed: 9;
-=======
-$color-primary:     #046F78;
-$color-secondary:   #014D56;
-$color-accent:      #8B3A2A;
-$color-background:  #f2f2f2;
-$color-text:        #1A1714;
-$color-white:       #FFFFFF;
 
-$font-primary:   "Raleway", sans-serif;
-$font-secondary: "Queen Serif", serif;
-$font-url-1:     'https://fonts.cdnfonts.com/css/queen-serif';
-$font-url-2:     'https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap';
-
-$spacing-base:  16;
-$spacing-scale: (0, 2, 4, 8, 12, 16, 20, 24, 32, 40, 48, 64, 80, 96, 128);
-
-$bp-xs:  380px;
-$bp-sm:  576px;
-$bp-md:  768px;
-$bp-lg:  992px;
-$bp-xl:  1024px;
-$bp-xxl: 1200px;
-
-$layout-max-width:   1440px;
-$layout-inner-width: 90%;
-$layout-z-fixed:     9;
->>>>>>> 13b27ff3b545faa49af5547e56a57a52129d4fb4
+// =============================================================================
+// Border radius
+// =============================================================================
+$radius-scale: (0, 2, 4, 8, 16, 24, 32);

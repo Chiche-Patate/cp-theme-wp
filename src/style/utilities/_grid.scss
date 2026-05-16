@@ -1,3 +1,4 @@
+@use "sass:list";
 @use '../00_variables/variables' as *;
 @use '../00_mixins/mixins' as *;
 
@@ -24,23 +25,45 @@
 // =============================================================================
 // Justify & Align
 // =============================================================================
-.justify-start    { justify-content: flex-start; }
-.justify-end      { justify-content: flex-end; }
-.justify-center   { justify-content: center; }
-.justify-between  { justify-content: space-between; }
-.justify-around   { justify-content: space-around; }
-.justify-evenly   { justify-content: space-evenly; }
+$flex-alignment: (
+    "justify": (
+        "start":   (justify-content: flex-start),
+        "end":     (justify-content: flex-end),
+        "center":  (justify-content: center),
+        "between": (justify-content: space-between),
+        "around":  (justify-content: space-around),
+        "evenly":  (justify-content: space-evenly),
+    ),
+    "items": (
+        "start":    (align-items: flex-start),
+        "end":      (align-items: flex-end),
+        "center":   (align-items: center),
+        "stretch":  (align-items: stretch),
+        "baseline": (align-items: baseline),
+    ),
+    "self": (
+        "start":   (align-self: flex-start),
+        "end":     (align-self: flex-end),
+        "center":  (align-self: center),
+        "stretch": (align-self: stretch),
+    ),
+);
 
-.items-start      { align-items: flex-start; }
-.items-end        { align-items: flex-end; }
-.items-center     { align-items: center; }
-.items-stretch    { align-items: stretch; }
-.items-baseline   { align-items: baseline; }
+@each $prefix, $values in $flex-alignment {
+    @each $name, $props in $values {
+        .#{$prefix}-#{$name} {
+            @each $prop, $val in $props { #{$prop}: $val; }
+        }
 
-.self-start       { align-self: flex-start; }
-.self-end         { align-self: flex-end; }
-.self-center      { align-self: center; }
-.self-stretch     { align-self: stretch; }
+        @each $bp, $bpval in $breakpoints {
+            @include breakpoint($bp) {
+                .#{$prefix}-#{$name}-#{$bp} {
+                    @each $prop, $val in $props { #{$prop}: $val; }
+                }
+            }
+        }
+    }
+}
 
 // =============================================================================
 // Flex grow / shrink
@@ -53,16 +76,62 @@
 .no-shrink   { flex-shrink: 0; }
 
 // =============================================================================
+// Flex splits
+// =============================================================================
+$flex-splits: (
+    "25-75": (25%, 75%),
+    "33-66": (33.333%, 66.666%),
+    "50-50": (50%, 50%),
+    "66-33": (66.666%, 33.333%),
+    "75-25": (75%, 25%),
+);
+
+@each $name, $sizes in $flex-splits {
+    .flex-#{$name} {
+        display: flex;
+        flex-direction: column;
+
+        > * {
+            width: 100%;
+            min-width: 0;
+        }
+
+        @each $bp, $value in $breakpoints {
+            @include breakpoint($bp) {
+                &-#{$bp} {
+                    flex-direction: row;
+
+                    > *:first-child {
+                        width: list.nth($sizes, 1);
+                        min-width: 0;
+                    }
+
+                    > *:last-child {
+                        width: list.nth($sizes, 2);
+                        min-width: 0;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// =============================================================================
 // CSS Grid — colonnes
 // =============================================================================
 $grid-columns: 12;
 
-.grid-cols-auto { grid-template-columns: repeat(auto-fit, minmax(0, 1fr)); }
+.grid-cols-auto { grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); }
+
+.grid-cols-auto-center {
+    grid-template-columns: 1fr auto 1fr;
+}
 
 @for $i from 1 through $grid-columns {
   .grid-cols-#{$i} { grid-template-columns: repeat(#{$i}, minmax(0, 1fr)); }
   .col-span-#{$i}  { grid-column: span #{$i}; }
   .col-start-#{$i} { grid-column-start: #{$i}; }
+  .grid-cols-auto-#{$i} { grid-template-columns: repeat(#{$i}, auto); }
 }
 
 .col-span-full { grid-column: 1 / -1; }

@@ -5,12 +5,6 @@
 
         <section class="section center">
             <div class="section__inner">
-                <h1><?php the_title(); ?></h1>
-            </div>
-        </section>
-
-        <section class="section center">
-            <div class="section__inner">
                 <article>
                     <?php the_content(); ?>
                 </article>

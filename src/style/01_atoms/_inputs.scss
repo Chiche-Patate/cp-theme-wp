@@ -1,0 +1,118 @@
+@use '../00_variables/variables' as *;
+
+// =============================================================================
+// Inputs — configuration
+// Surcharger dans _config.scss si besoin
+// =============================================================================
+$input-font-size: fs(16)                    !default;
+$input-color: $color-text               !default;
+$input-border-color: rgba($color-text, .3)     !default;
+$input-focus-color: $color-primary            !default;
+$input-transition: border-color .3s ease     !default;
+$label-top: spacing(30)               !default;
+$label-font-size: fs(16)                    !default;
+$label-color: $color-text               !default;
+$label-opacity: .4                        !default;
+$label-focus-translate: spacing(24)               !default;
+$label-focus-scale: .75                       !default;
+$label-transition: transform .2s ease, opacity .2s ease, color .2s ease !default;
+$field-line-color: $color-primary            !default;
+$field-line-transition: width .3s ease            !default;
+$textarea-min-height: 120px                     !default;
+
+// =============================================================================
+// Wrapper de champ
+// =============================================================================
+%field-base {
+    position: relative;
+    padding-top: spacing(20);
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 1px;
+        background-color: $field-line-color;
+        transition: $field-line-transition;
+    }
+
+    &:focus-within {
+        &::after { width: 100%; }
+
+        label {
+            transform: translateY(-#{$label-focus-translate}) scale($label-focus-scale);
+            opacity: 1;
+            color: $input-focus-color;
+        }
+    }
+}
+
+.field {
+    @extend %field-base;
+}
+
+// =============================================================================
+// Label floating
+// =============================================================================
+%label-base {
+    position: absolute;
+    top: $label-top;
+    left: 0;
+    font-family: $font-primary;
+    font-size: $label-font-size;
+    color: $label-color;
+    opacity: $label-opacity;
+    pointer-events: none;
+    transform-origin: left top;
+    transition: $label-transition;
+}
+
+// =============================================================================
+// Input base
+// =============================================================================
+%input-base {
+    width: 100%;
+    font-family: $font-primary;
+    font-size: $input-font-size;
+    color: $input-color;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid $input-border-color;
+    border-radius: 0;
+    padding: spacing(8) 0;
+    outline: none;
+    box-shadow: none;
+    appearance: none;
+    transition: $input-transition;
+
+    &::placeholder { color: transparent; }
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+input[type="password"],
+input[type="url"],
+textarea,
+select {
+    @extend %input-base;
+}
+
+// =============================================================================
+// Exceptions
+// =============================================================================
+#shop-filters {
+    input::placeholder { color: rgba($input-color, .4); }
+}
+
+label:not(.filter-scrollable label, .woocommerce-checkout label, .woocommerce-account label) {
+    @extend %label-base;
+}
+
+textarea {
+    resize: vertical;
+    min-height: $textarea-min-height;
+}

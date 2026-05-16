@@ -1,4 +1,5 @@
 // 00_variables/_variables.scss
+@forward './config';  // ← à remplir avant de commencer
 @forward './tokens';
 @forward './functions';
 @forward './colors';

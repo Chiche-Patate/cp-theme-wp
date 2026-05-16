@@ -1,0 +1,34 @@
+@use 'sass:list';
+@use '../00_mixins/mixins' as *;
+@use '../00_variables/variables' as *;
+
+$ratios: (
+    "1-1":   (1, 1),
+    "4-3":   (4, 3),
+    "3-4":   (3, 4),
+    "16-9":  (16, 9),
+    "3-2":   (3, 2),
+    "2-3":   (2, 3),
+    "9-16":  (9, 16),
+);
+
+@each $name, $values in $ratios {
+    .ratio-#{$name} {
+        aspect-ratio: calc(list.nth($values, 1) / list.nth($values, 2));
+        overflow: hidden;
+
+        img, video, figure {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @each $bp, $value in $breakpoints {
+            @include breakpoint($bp) {
+                &-#{$bp} {
+                    aspect-ratio: calc(list.nth($values, 1) / list.nth($values, 2));
+                }
+            }
+        }
+    }
+}

@@ -4,18 +4,41 @@
 @use "./00_variables/variables" as *;
 @use "./00_mixins/mixins" as *;
 
+// Utilitaires — classes générées
+@use "./utilities/borders";
+@use "./utilities/gap";
+@use "./utilities/grid";
+@use "./utilities/media";
+@use "./utilities/spacing";
+@use "./utilities/typography";
+
 // Base — reset et fondations
 @use "./01_atoms/reset";
 @use "./01_atoms/base";
 @use "./01_atoms/outline";
 
 // Atomes — éléments HTML bruts
+@use "./01_atoms/button";
+@use "./01_atoms/checkbox";
+@use "./01_atoms/decoration";
+@use "./01_atoms/images";
+@use "./01_atoms/inputs";
+@use "./01_atoms/layout";
+@use "./01_atoms/links";
+@use "./01_atoms/separator";
+@use "./01_atoms/spinner";
 @use "./01_atoms/text";
 @use "./01_atoms/title";
-@use "./01_atoms/layout";
 
-// Utilitaires — classes générées
-@use "./utilities/gap";
-@use "./utilities/grid";
-@use "./utilities/spacing";
-@use "./utilities/typography";
+// Molecules
+@use "./02_molecules/form";
+@use "./02_molecules/navigation";
+@use "./02_molecules/process";
+
+// Organisms
+@use "./03_organisms/account";
+@use "./03_organisms/cart";
+@use "./03_organisms/footer";
+@use "./03_organisms/header";
+@use "./03_organisms/product";
+@use "./03_organisms/products";
